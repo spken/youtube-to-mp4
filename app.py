@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder="templates")
 
 
 @app.route("/")
-def index():    
+def index():
     """
     Renders index on application launch
     """
