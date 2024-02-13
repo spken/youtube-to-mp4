@@ -18,5 +18,21 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/about")
+def about():
+    """
+    Renders about page
+    """
+    return render_template("pages/about.html")
+
+
+@app.route("/privacy")
+def privacy():
+    """
+    Renders privacy policy page
+    """
+    return render_template("pages/privacy.html")
+
+
 if __name__ == "__main__":
     app.run()
