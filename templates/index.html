@@ -9,7 +9,7 @@
             <input type="text" class="form-control" name="search" id="search" placeholder="Enter URL">
         </div>
         <div class="col-md-3 col-xs-12">
-            <button onclick="console.log('clicked')">Download</button>
+            <button onclick="download(document.getElementById('search').value)">Download</button>
         </div>
         <div class="row">
             <video id="video" src="" type="video/mp4" hidden></video>
