@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Hello, World</h1>
-    <input type="text" class="form-control" name="search" id="search" placeholder="Enter URL">
+    <div class="row">
+        <label for="search">Enter link to a YouTube video:</label>
+    </div>
+    <div class="row">
+        <div class="col-md-9 col-xs-12">
+            <input type="text" class="form-control" name="search" id="search" placeholder="Enter URL">
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <button onclick="console.log('clicked')">Download</button>
+        </div>
+        <div class="row">
+            <video id="video" src="" type="video/mp4" hidden></video>
+        </div>
+    </div>
 {% endblock %}

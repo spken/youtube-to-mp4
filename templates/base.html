@@ -11,37 +11,28 @@
         crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"/>
-    <link
-        href="{{ url_for('static', filename='css/style.css') }}"
-        rel="stylesheet"
-    />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <title>youtube-to-mp4</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-    <header class="d-flex justify-content-between py-3 mb-4">
-        <a href="{{ url_for('index') }}" class="link-body-emphasis text-decoration-none">
-            <h1 class="fs-4">youtube-to-mp4</h1>
-        </a>
+<body>
+    <header>
+        <h1 class="text-center">youtube-to-mp4</h1>
         <nav>
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('privacy') }}">Privacy Policy</a></li>
-            </ul>
+            <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+            <a class="navbar-brand" href="{{ url_for('about') }}">About</a>
+            <a class="navbar-brand" href="{{ url_for('privacy') }}">Privacy Policy</a>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="row justify-content-center align-items-center text-center">
-            <div class="col-12">
-                {% block content %}{% endblock %}
-            </div>
+    <main class="row justify-content-center">
+        <div class="col-8">
+            {% block content %}{% endblock %}
         </div>
     </main>
-    
-    <footer class="py-3 mt-auto">
-        <p class="text-center text-body-secondary">Made by <a href="https://github.com/spken">@spken</a></p>
+
+    <footer>
+        <p class="text-center">Made by <a href="https://github.com/spken">@spken</a></p>
     </footer>
 
     <script 
@@ -49,6 +40,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
         crossorigin="anonymous">
     </script>
+    <script src="{{ url_for('static', filename='scripts/handler.js') }}"></script>
 </body>
 
 </html>
