@@ -5,9 +5,9 @@ certain videos.
 """
 # https://pytube.io/en/latest/user/quickstart.html
 
+import urllib
 from flask import Flask, jsonify, render_template
 from pytube import YouTube
-import urllib
 
 app = Flask(__name__, template_folder="templates")
 
@@ -42,17 +42,8 @@ def download(url):
     Downloads a YouTube video
     :return: Video as mp4
     """
-    """yt = YouTube(
-        'http://youtube.com/watch?v=2lAe1cqCOXo',
-        on_progress_callback=progress_func,
-        on_complete_callback=complete_func,
-        proxies=my_proxies,
-        use_oauth=False,
-        allow_oauth_cache=True
-    )
-    """
-    decodedURL = urllib.parse.unquote(url)
-    yt = YouTube(decodedURL)
+    decoded_url = urllib.parse.unquote(url)
+    yt = YouTube(decoded_url)
     return jsonify({"title": yt.title})
 
 
