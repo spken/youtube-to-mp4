@@ -5,11 +5,13 @@ certain videos.
 """
 # https://pytube.io/en/latest/user/quickstart.html
 
-import urllib
-from flask import Flask, jsonify, render_template
+from urllib.parse import unquote
+from flask import Flask, jsonify, render_template, request
+from flask_cors import CORS
 from pytube import YouTube
 
 app = Flask(__name__, template_folder="templates")
+CORS(app)
 
 
 @app.route("/")
@@ -36,15 +38,18 @@ def privacy():
     return render_template("pages/privacy.html")
 
 
-@app.route("/download/<url>")
-def download(url):
+@app.route("/download")
+def download():
     """
     Downloads a YouTube video
     :return: Video as mp4
     """
-    decoded_url = urllib.parse.unquote(url)
-    yt = YouTube(decoded_url)
-    return jsonify({"title": yt.title})
+    url = request.args.get("url")
+    url = unquote(url)
+    yt = YouTube(url)
+    if yt:
+        return jsonify({"video": yt.streams.get_highest_resolution().url})
+    return jsonify({"video": "No video found."})
 
 
 if __name__ == "__main__":

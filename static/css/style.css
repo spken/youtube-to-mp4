@@ -63,3 +63,9 @@ button:hover {
     background-color: #ff6061;
     transform: scale(1.02);
 }
+
+.video {
+    display: none;
+    height: auto;
+    width: auto;
+}
