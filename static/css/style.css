@@ -64,6 +64,27 @@ button:hover {
     transform: scale(1.02);
 }
 
+#loader {
+    display: none;
+    border: 20px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 20px solid #ff6961;
+    width: 180px;
+    height: 180px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */

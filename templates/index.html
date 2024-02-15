@@ -11,8 +11,12 @@
         <div class="col-md-3 col-xs-12">
             <button onclick="download(document.getElementById('search').value)">Download</button>
         </div>
-        <div class="row video-container">
-            <iframe id="video" src="">Video is unsupported in your browser.</iframe>
+        <div class="row mt-5 justify-content-center align-items-center">
+            <div id="loader"></div>
+            <div class="video-container text-center">
+                <h3 id="error"></h3>
+                <iframe id="video" src="">Video is unsupported in your browser.</iframe>
+            </div>
         </div>
     </div>
 {% endblock %}

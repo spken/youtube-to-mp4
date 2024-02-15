@@ -3,7 +3,6 @@ This module contains a Flask application which completes
 the download of a youtube video as well as the querying of
 certain videos.
 """
-# https://pytube.io/en/latest/user/quickstart.html
 
 from urllib.parse import unquote
 from flask import Flask, jsonify, render_template, request
@@ -46,10 +45,14 @@ def download():
     """
     url = request.args.get("url")
     url = unquote(url)
-    yt = YouTube(url)
-    if yt:
-        return jsonify({"video": yt.streams.get_highest_resolution().url})
-    return jsonify({"video": "No video found."})
+    try:
+        yt = YouTube(url)
+        video_url = yt.streams.get_highest_resolution().url
+        return jsonify({"video": video_url})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"video": "No video found."})
+
 
 
 if __name__ == "__main__":
