@@ -53,9 +53,6 @@ def download():
     except RegexMatchError as e:
         print("Error:", e)
         return jsonify({"video": "No video found."})
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({"video": "An error occurred."})
 
 
 
