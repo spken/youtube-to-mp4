@@ -3,13 +3,15 @@ This module contains a Flask application which completes
 the download of a youtube video as well as the querying of
 certain videos.
 """
-# https://pytube.io/en/latest/user/quickstart.html
 
-import urllib
-from flask import Flask, jsonify, render_template
+from urllib.parse import unquote
+from flask import Flask, jsonify, render_template, request
+from flask_cors import CORS
 from pytube import YouTube
+from pytube.exceptions import RegexMatchError
 
 app = Flask(__name__, template_folder="templates")
+CORS(app)
 
 
 @app.route("/")
@@ -36,15 +38,22 @@ def privacy():
     return render_template("pages/privacy.html")
 
 
-@app.route("/download/<url>")
-def download(url):
+@app.route("/download")
+def download():
     """
     Downloads a YouTube video
     :return: Video as mp4
     """
-    decoded_url = urllib.parse.unquote(url)
-    yt = YouTube(decoded_url)
-    return jsonify({"title": yt.title})
+    url = request.args.get("url")
+    url = unquote(url)
+    try:
+        yt = YouTube(url)
+        video_url = yt.streams.get_highest_resolution().url
+        return jsonify({"video": video_url})
+    except RegexMatchError as e:
+        print("Error:", e)
+        return jsonify({"video": "No video found."})
+
 
 
 if __name__ == "__main__":
