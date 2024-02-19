@@ -8,6 +8,7 @@ from urllib.parse import unquote
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from pytube import YouTube
+from pytube.exceptions import RegexMatchError
 
 app = Flask(__name__, template_folder="templates")
 CORS(app)
@@ -49,9 +50,12 @@ def download():
         yt = YouTube(url)
         video_url = yt.streams.get_highest_resolution().url
         return jsonify({"video": video_url})
-    except Exception as e:
+    except RegexMatchError as e:
         print("Error:", e)
         return jsonify({"video": "No video found."})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"video": "An error occurred."})
 
 
 
