@@ -3,7 +3,7 @@ This module tests the app module.
 """
 
 import pytest
-from ..app import app as flask_app
+from youtube_to_mp4.app import app as flask_app
 
 @pytest.fixture(name="app")
 def fixture_app():
