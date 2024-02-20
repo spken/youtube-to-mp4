@@ -7,7 +7,7 @@ certain videos.
 from urllib.parse import unquote
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
-from pytube import YouTube, Search
+from pytube import YouTube
 from pytube.exceptions import RegexMatchError, AgeRestrictedError
 
 app = Flask(__name__, template_folder="templates")
