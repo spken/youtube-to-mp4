@@ -8,7 +8,7 @@ from urllib.parse import unquote
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from pytube import YouTube
-from pytube.exceptions import RegexMatchError
+from pytube.exceptions import RegexMatchError, AgeRestrictedError
 
 app = Flask(__name__, template_folder="templates")
 CORS(app)
@@ -53,8 +53,9 @@ def download():
     except RegexMatchError as e:
         print("Error:", e)
         return jsonify({"video": "No video found."})
-
-
+    except AgeRestrictedError as e:
+        print("Error:", e)
+        return jsonify({"video": "Video is age restricted."})
 
 if __name__ == "__main__":
     app.run()
